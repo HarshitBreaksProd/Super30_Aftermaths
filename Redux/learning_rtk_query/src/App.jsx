@@ -1,6 +1,6 @@
 import React from "react";
 import AllProducts from "./components/AllProducts";
-import SepcificProduct from "./components/SepcificProduct";
+import SepcificProduct from "./components/SpecificProduct";
 import AddNewProduct from "./components/AddNewProduct";
 import UpdateProduct from "./components/UpdateProduct";
 import DeleteProduct from "./components/DeleteProduct";

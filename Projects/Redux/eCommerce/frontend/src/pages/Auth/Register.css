@@ -1,0 +1,19 @@
+#username-input:focus + #username-input-label {
+  top:2px;
+  font-size:14px;
+}
+
+#email-input:focus + #email-input-label {
+  top:2px;
+  font-size:14px;
+}
+
+#password-input:focus + #password-input-label {
+  top:2px;
+  font-size:14px;
+}
+
+#confirm-password-input:focus + #confirm-password-input-label {
+  top:2px;
+  font-size:14px;
+}
