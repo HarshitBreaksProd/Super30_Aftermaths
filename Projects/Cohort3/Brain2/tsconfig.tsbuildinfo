@@ -1,0 +1,1 @@
+{"root":["./backend/src/db.ts","./backend/src/index.ts","./backend/src/middleware.ts","./backend/src/models.ts","./backend/src/controllers/authcontrollers.ts","./backend/src/routes/authroutes.ts"],"version":"5.8.3"}
