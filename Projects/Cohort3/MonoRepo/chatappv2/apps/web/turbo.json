@@ -1,0 +1,11 @@
+{
+  "extends": ["//"],
+  "tasks": {
+    "build": {
+      "env": ["NEXTAUTH_SECRET", "NEXTAUTH_URL"]
+    }, 
+    "dev": {
+      "env": ["NEXTAUTH_SECRET", "NEXTAUTH_URL"]
+    }
+  }
+}

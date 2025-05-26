@@ -1,0 +1,12 @@
+{
+  "extends": ["//"],
+  "tasks": {
+    "build": {
+      "outputs": ["dist/**"],
+      "env": ["WS_PORT"]
+    },
+    "dev": {
+      "env": ["WS_PORT"]
+    }
+  }
+}
