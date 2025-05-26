@@ -1,17 +1,17 @@
 "use client";
-import { Button } from "@workspace/ui/components/button";
+
 import { Input } from "@workspace/ui/components/input";
 import { Label } from "@workspace/ui/components/label";
-import { useFormState, useFormStatus } from "react-dom";
-import { Loader2 } from "lucide-react";
-import { useEffect } from "react";
 import { toast } from "sonner";
-import {
-  CreateRoomFormState,
-  handleCreateRoom,
-} from "@/app/actions/room_actions";
+import { redirect } from "next/navigation";
+import { Button } from "@workspace/ui/components/button";
+import { joinRoom } from "@/app/actions/user_actions";
+import { useFormState, useFormStatus } from "react-dom";
+import { handleJoinRoom, JoinRoomFormState } from "@/app/actions/room_actions";
+import { useEffect } from "react";
+import { Loader2 } from "lucide-react";
 
-const initialState: CreateRoomFormState = {
+const initialState: JoinRoomFormState = {
   success: false,
 };
 
@@ -23,17 +23,17 @@ function SubmitButton() {
       {pending ? (
         <>
           <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-          Creating Room...
+          Joining Room...
         </>
       ) : (
-        "Create Room"
+        "Join Room"
       )}
     </Button>
   );
 }
 
-export function CreateRoomForm() {
-  const [state, formAction] = useFormState(handleCreateRoom, initialState);
+const JoinRoomForm = () => {
+  const [state, formAction] = useFormState(handleJoinRoom, initialState);
 
   useEffect(() => {
     if (state.message) {
@@ -49,13 +49,12 @@ export function CreateRoomForm() {
     <form action={formAction}>
       <div className="grid w-full items-center gap-4 mb-6">
         <div className="flex flex-col space-y-1.5">
-          <Label htmlFor="title">Room Title</Label>
+          <Label htmlFor="joinCode">Room Code</Label>
           <Input
-            id="title"
-            name="title"
+            id="joinCode"
+            name="joinCode"
             placeholder="Enter room title"
             required
-            maxLength={50}
             className={state.errors?.title ? "border-red-500" : ""}
           />
           {state.errors?.title && (
@@ -66,4 +65,6 @@ export function CreateRoomForm() {
       <SubmitButton />
     </form>
   );
-}
+};
+
+export default JoinRoomForm;

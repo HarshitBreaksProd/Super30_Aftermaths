@@ -1,9 +1,9 @@
 "use server";
 
 import { redirect } from "next/navigation";
-import { createRoom } from "./user_actions";
+import { createRoom, joinRoom } from "./user_actions";
 
-export type FormState = {
+export type CreateRoomFormState = {
   success: boolean;
   message?: string;
   errors?: {
@@ -12,9 +12,9 @@ export type FormState = {
 };
 
 export async function handleCreateRoom(
-  prevState: FormState,
+  prevState: CreateRoomFormState,
   formData: FormData
-): Promise<FormState> {
+): Promise<CreateRoomFormState> {
   const title = formData.get("title") as string;
 
   if (!title || title.trim().length === 0) {
@@ -52,6 +52,50 @@ export async function handleCreateRoom(
       message: response.error || "Failed to create room",
     };
   }
-  
+
   redirect(`/chat-room/${response.newRoom.id}`);
+}
+
+export type JoinRoomFormState = {
+  success: boolean;
+  message?: string;
+  errors?: {
+    title?: string;
+  };
+};
+
+export async function handleJoinRoom(
+  prevState: JoinRoomFormState,
+  formData: FormData
+): Promise<JoinRoomFormState> {
+  const joinCode = formData.get("joinCode") as string;
+
+  if (!joinCode || joinCode.trim().length !== 6) {
+    return {
+      success: false,
+      errors: {
+        title: "Room joinCode consists of 6 characters",
+      },
+    };
+  }
+
+  let response;
+  try {
+    response = await joinRoom(joinCode.trim());
+  } catch (error) {
+    console.error("Create room error:", error);
+    return {
+      success: false,
+      message: "An unexpected error occurred. Please try again.",
+    };
+  }
+
+  if (!response.success || !response.room) {
+    return {
+      success: false,
+      message: response.error || "Failed to create room",
+    };
+  }
+
+  redirect(`/chat-room/${response.room.id}`);
 }
