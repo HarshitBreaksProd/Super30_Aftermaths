@@ -120,6 +120,7 @@ export async function joinRoom(joinCode: string) {
       room,
     };
   } catch (e) {
+    console.log(e);
     return {
       success: false,
       errorCode: 401,
