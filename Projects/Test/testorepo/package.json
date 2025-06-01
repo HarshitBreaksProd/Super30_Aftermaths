@@ -1,5 +1,5 @@
 {
-  "name": "Monorepo",
+  "name": "testorepo",
   "private": true,
   "scripts": {
     "build": "turbo run build",
