@@ -1,5 +1,5 @@
 {
-  "name": "test",
+  "name": "meetdraw",
   "private": true,
   "scripts": {
     "build": "turbo run build",
