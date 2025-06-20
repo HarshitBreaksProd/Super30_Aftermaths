@@ -1,0 +1,69 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/client"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id              String  @id @default(uuid())
+  username        String  @unique
+  password        String
+  name            String
+  photo           String?
+  joinedrooms     Room[]  @relation(name: "participants")
+  controlledrooms Room[]
+  Chat            Chat[]
+}
+
+model Room {
+  id           String @id @default(uuid())
+  title        String
+  joinCode     String @unique
+  participants User[] @relation(name: "participants")
+  admin        User   @relation(fields: [adminId], references: [id])
+  adminId      String
+  Chat         Chat[]
+  Draw         Draw[]
+}
+
+model Chat {
+  id           String @id @default(uuid())
+  serialNumber Int    @default(autoincrement())
+  content      String
+  user         User   @relation(references: [id], fields: [userId])
+  userId       String
+  room         Room   @relation(references: [id], fields: [roomId])
+  roomId       String
+}
+
+enum Shape {
+  rectangle
+  diamond
+  circle
+  line
+  arrow
+  text
+  freehand
+}
+
+model Draw {
+  id          String  @id
+  shape       Shape
+  strokeStyle String
+  fillStyle   String
+  lineWidth   Int
+  font        String?
+  fontSize    String?
+  startX      Int?
+  startY      Int?
+  endX        Int?
+  endY        Int?
+  text        String?
+  points      Json?
+  room        Room    @relation(references: [id], fields: [roomId])
+  roomId      String
+}
