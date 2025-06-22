@@ -1,6 +1,9 @@
 [submodule "Projects/Cohort3/meetro"]
 	path = Projects/Cohort3/meetro
-	url = https://github.com/HarshitCodes2/meetro
+	url = https://github.com/HarshitBreaksProd/meetro
 [submodule "Projects/Cohort3/meetdraw"]
 	path = Projects/Cohort3/meetdraw
-	url = https://github.com/HarshitCodes2/meetdraw
+	url = https://github.com/HarshitBreaksProd/meetdraw
+[submodule "Projects/Cohort3/braintu"]
+	path = Projects/Cohort3/braintu
+	url = https://github.com/HarshitBreaksProd/braintu
