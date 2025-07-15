@@ -7,3 +7,6 @@
 [submodule "Projects/Cohort3/braintu"]
 	path = Projects/Cohort3/braintu
 	url = https://github.com/HarshitBreaksProd/braintu
+[submodule "Projects/Cohort3/DevOps_Stuff/ci_cd"]
+	path = Projects/Cohort3/DevOps_Stuff/ci_cd
+	url = https://github.com/HarshitBreaksProd/LocalTodo.git
