@@ -1,0 +1,21 @@
+version: "3.8"
+services:
+  postgres:
+    image: postgres
+    container_name: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_USER=harshit
+
+  user_app:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    environment:
+      - DATABASE_URL=postgresql://harshit:password@postgres:5432/harshit
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres

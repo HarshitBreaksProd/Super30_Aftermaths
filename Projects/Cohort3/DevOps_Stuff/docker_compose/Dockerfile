@@ -10,12 +10,8 @@ RUN pnpm i
 
 COPY . .
 
-ENV DATABASE_URL=postgresql://harshit:password@localhost:5432/harshit?schema=public
-
-RUN pnpx prisma migrate dev
-RUN pnpx prisma generate
 RUN pnpm run build
 
 EXPOSE 3000
 
-CMD ["pnpm", "start"]
+CMD ["pnpm", "run", "docker:start"]
