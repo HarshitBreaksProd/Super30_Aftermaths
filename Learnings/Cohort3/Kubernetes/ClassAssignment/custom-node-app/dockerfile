@@ -1,0 +1,13 @@
+FROM oven/bun
+
+WORKDIR /usr/local
+
+COPY ./package.json ./package.json
+COPY ./package-lock.json ./package-lock.json
+COPY ./bun.lock ./bun.lock
+
+RUN bun install
+
+COPY . .
+
+CMD ["bun", "run", "index.ts"]

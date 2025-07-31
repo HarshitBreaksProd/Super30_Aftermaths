@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: custom-node-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: custom-node-app
+  template:
+    metadata:
+      labels:
+        app: custom-node-app
+    spec:
+      containers:
+      - name: custom-node-app-container
+        image: harshitbreaksprod/custom-node-app 
+        ports:
+        - containerPort: 3000
+
+      - name: postgres
+        image: postgres
+        env:
+          - name: POSTGRES_DB
+            value: custom-node-app
+          - name: POSTGRES_USER
+            value: postgres
+          - name: POSTGRES_PASSWORD
+            value: password
+        ports:
+        - containerPort: 5432
+

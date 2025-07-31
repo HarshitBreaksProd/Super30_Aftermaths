@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nignx-pod
+  labels:
+    app: nginx
+spec:
+  containers:
+    - name: nignx-container
+      image: nignx
+      ports:
+      - containerPort: 80

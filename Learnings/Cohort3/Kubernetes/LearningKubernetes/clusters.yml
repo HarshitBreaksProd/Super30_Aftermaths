@@ -1,0 +1,10 @@
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+nodes:
+- role: control-plane
+- role: worker
+- role: worker
+
+
+
+# This is the manifest to start a k8s cluster locally using docker, kind as in the cli stands for "k8s inside docker"
