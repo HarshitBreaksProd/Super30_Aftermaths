@@ -1,12 +1,14 @@
 import express from "express";
-import pg from "pg";
+import pg from "./node_modules/@types/pg";
 import cors from "cors";
 
 const app = express();
 app.use(express.json());
 app.use(cors());
 const pool = new pg.Pool({
-  connectionString: "updateThis",
+  connectionString:
+    "postgres://postgres:postgres@db.default.svc.cluster.local:5432/postgres",
+  // postgres://username:password@servicename.namespace.svc.cluster.local:port/dbname   <--- Schema
 });
 
 app.get("/users", async (req, res) => {

@@ -1,15 +1,15 @@
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: backend-team
-  labels:
-    name: backend-team
----
+# apiVersion: v1
+# kind: Namespace
+# metadata:
+#   name: backend-team
+#   labels:
+#     name: backend-team
+# ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: backend
-  namespace: backend-team
+  # namespace: backend-team
 spec:
   replicas: 2
   selector:
@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: harshitbreaksprod/backend-pg:1
+          image: harshitbreaksprod/backend-pg:2
           ports:
             - containerPort: 3000
 ---
@@ -30,7 +30,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: backend
-  namespace: backend-team
+  # namespace: backend-team
 spec:
   selector:
     app: backend

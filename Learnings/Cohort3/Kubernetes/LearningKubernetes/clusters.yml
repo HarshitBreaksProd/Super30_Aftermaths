@@ -7,4 +7,5 @@ nodes:
 
 
 
-# This is the manifest to start a k8s cluster locally using docker, kind as in the cli stands for "k8s inside docker"
+# This is the config to start a k8s cluster locally using docker, kind as in the cli stands for "k8s inside docker"
+#  kind create cluster --config clusters.yml --name local
