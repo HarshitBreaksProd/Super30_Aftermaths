@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-k8s
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend-k8s
+  template:
+    metadata:
+      labels:
+        app: backend-k8s
+    spec:
+      containers:
+      - name: backend-k8s
+        image: harshitbreaksprod/backend-k8s:2
+        ports:
+        - containerPort: 3000
+        env:
+        - name: PORT
+          valueFrom:
+            configMapKeyRef:
+              name: backend-config
+              key: PORT
+        - name: CACHE_SIZE
+          valueFrom:
+            configMapKeyRef:
+              name: backend-config
+              key: CACHE_SIZE
+        - name: PAYMENT_GATEWAY_URL
+          valueFrom:
+            configMapKeyRef:
+              name: backend-config
+              key: PAYMENT_GATEWAY_URL
+        
+        - name: DATABASE_URL # imported from secret
+          valueFrom:
+            secretKeyRef:
+              name: backend-secret
+              key: db_url
+            
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-service
+spec:
+  selector:
+    app: backend-k8s
+  ports:
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000
+      nodePort: 30007  # This port can be any valid port within the NodePort range
+  type: NodePort
