@@ -1,0 +1,12 @@
+# Usually created by the development engineer
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: nfs-pvc
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 10Gi
+  storageClassName: nfs # tells the k8s master node that the PV is of nfs(network file storage) type

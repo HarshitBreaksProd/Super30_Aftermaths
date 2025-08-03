@@ -1,0 +1,12 @@
+# Make sure your config points to the cloud k8s cluster
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: csi-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 40Gi
+  storageClassName: do-block-storage
